@@ -134,23 +134,27 @@ The incident graph and attack story provided visibility into the affected host a
 When stuffs like this happen in a SOC Environment, it's triage first which is verifying the Alert, then investigate by using the SIEM tool like Microsoft Sentinel to see what has been done.
 
 **1. Triage**
-* Verify the alert
+* Verify the alert by checking the alert details.
+* Confirm if it's a false positive or true positive.
 
 **2. Investigation**
-* Use Microsoft Sentinel to see what has been done
-* If any encoded command was done, you can go ahead and decode it to see what was done
+* Use Microsoft Sentinel to investigate in detail by checking for any suspicious processes that ran on the endpoint.
+* If any encoded command was run, it should be decoded to see the details of the command.
+* Establish any parent-child relationship between suspicious processes.
 
 **3. Containment**
-* If it's a malware download, immediately check if it's not spreading across the network
-* If it is spreading, disconnect it from the network
+* If it's a malware download, immediately check for the blast radius impact.
+* If it is spreading, disconnect the endpoint from the network.
 
 **4. Remediation**
-* Use anti malware to scan e.g Defender for Endpoints
-* Microsoft Intune lets you know if the device health is safe to connect back
+* Use anti-malware to scan, e.g., Defender for Endpoint.
+* Check for any external connections from a suspicious IP.
+* Block any outbound connections from your endpoint to the suspicious IP.
+* Microsoft Intune lets you know if the device health is safe to connect back.
 
 **5. Reporting**
-* Write a report about your findings
-* Escalate to the IT department if necessary
+* Write a report about your findings.
+* Escalate to the IT department if necessary.
 
 ---
 
