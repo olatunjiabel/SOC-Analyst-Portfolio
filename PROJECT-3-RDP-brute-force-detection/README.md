@@ -109,6 +109,20 @@ SecurityEvent
 | where FailedAttempts >= 10 and SuccessfulAttempts >= 1
 | sort by FailedAttempts desc
 ```
+### Why Logon Types 3 and 10 Were Used
+
+Both Logon Type 3 and Logon Type 10 were included in the detection based on how RDP authentication attempts were observed in the lab.
+
+During failed RDP authentication attempts, the authentication process did not complete as a remote interactive session. These failed attempts were therefore recorded as **Logon Type 3 (Network)**.
+
+When authentication was successfully completed through RDP, Windows recorded the successful session as **Logon Type 10 (Remote Interactive)**.
+
+The detection therefore monitors both logon types to capture the authentication sequence:
+
+**Failed RDP authentication → Logon Type 3 → Successful RDP authentication → Logon Type 10**
+
+This allows the detection to identify repeated failed authentication attempts followed by a successful RDP login from the same account and source IP.
+
 
 ###  Detection Result
 ![Detection Result](Screenshots/bruteforce-detection-success.png)
