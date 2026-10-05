@@ -18,13 +18,22 @@
 Analytics rule triggered after 3+ failed logins detected within 10 minutes.
 
 **Step 2 - Checked source IP**
-Source IP was 127.0.0.1 local host loopback address which insinuates that the failed attempts originated from the machine itself, not an external attacker. A real brute force would show an external IP.
 
-**Step 3 - Checked LogonType**
-LogonType 7 indicates a workstation unlock attempt. A real brute force attack would show LogonType 3 (network) or LogonType 10 (RDP), not LogonType 7.
+The Source IP was `127.0.0.1`, which is the local host loopback address. This indicates that the failed authentication attempts originated from the local machine rather than from a remote network source.
 
-**Step 4 - Concluded false positive**
-The combination of these findings made me come to the conclusion that it was just the user entering an incorrect password while unlocking their machine.
+This reduced the likelihood of a traditional external brute-force attack.
+
+### Step 3 - Checked Logon Type
+
+The event showed **Logon Type 7**, which represents a workstation unlock attempt.
+
+This was significant because common remote authentication attacks would typically involve other logon types, such as **Logon Type 3 (Network)** or **Logon Type 10 (Remote Interactive/RDP)**.
+
+### Step 4 - Concluded False Positive
+
+The combination of the local loopback source address (`127.0.0.1`) and **Logon Type 7** indicated that the failed authentication attempts were associated with a local workstation unlock rather than a remote brute-force attack.
+
+I therefore classified the alert as a **false positive**, most likely caused by the user entering an incorrect password while attempting to unlock the workstation.
 
 ---
 
