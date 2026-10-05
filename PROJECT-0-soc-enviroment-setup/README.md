@@ -1,7 +1,7 @@
 # Project 0 — SOC Environment Setup
 
 ## Objective
-Establish a Microsoft cloud-based SOC environment aligned with the SC-200 exam.
+Establish a Microsoft cloud-based SOC environment.
 
 ---
 
