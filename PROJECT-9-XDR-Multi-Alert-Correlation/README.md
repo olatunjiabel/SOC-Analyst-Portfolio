@@ -143,7 +143,7 @@ All alerts was related to the same endpoint and was carried out by the same user
 | Discovery | T1057 | Process Discovery | tasklist.exe executed at 9:49:08 AM |
 | Discovery | T1016 | System Network Configuration Discovery | ipconfig.exe /all executed at 9:49:23 AM |
 | Persistence | T1136.001 | Create Account: Local Account | net.exe used to create "backdoor" local account at 9:49:35 AM |
-| Privilege Escalation | T1078.003 | Valid Accounts: Local Accounts | "backdoor" account added to local Administrators group at 9:49:44 AM |
+| Privilege Escalation | T1098.007 | Account Manipulation: Additional Local or Domain Groups | "backdoor" account added to local Administrators group at 9:49:44 AM |
 
 **MITRE ATT&CK Navigator heatmap:**
 ![MITRE Navigator Heatmap](screenshots/MITRE-ATT&CK-Navigator-heatmap.png)
