@@ -30,34 +30,17 @@ This incident involved a hands-on-keyboard attack launched from a compromised ad
 
 ## Reason for XDR Correlation
 
-First of all, the incident titled "Hands-on keyboard attack was launched from a compromised account" shows the executioner of this attack was sitting directly and using the endpoint.
+The incident was titled "Hands-on keyboard attack was launched from a compromised account." The alert story showed two processes, two users, and one endpoint: `win-5l3oittdjlp`.
 
-Furthermore, the alert story showed:
-
-- Two processes
-- Two users
-- One endpoint — win-5l3oittdjlp
-
-The alert story gave one very important detail to take note of: this attack started on July 10, 2026, and the last activity was July 12, 2026. All on the same endpoint.
+The activity covered July 10 to July 12, 2026, and occurred on the same endpoint.
 
 ![Attack Story Overview](screenshots/Potential-human-operated-malicious-activity.png)
 
-The first alert under the attack story tab showed that MDE prevented the execution of a Trojan on the endpoint in a commandline ran by the Admin. This happened at 12:58pm.
+On July 10, Microsoft Defender for Endpoint blocked a Trojan detected during a CertUtil download attempt. Later, PowerShell created the EICAR test file, which was quarantined by Windows Defender Antivirus.
 
-On that same day, on that particular endpoint, within the same timeline "1pm", PowerShell was used to create a file named eicar.com, file size 68 B. The eicar file was quarantined immediately as it displays the behaviour of a virus.
+On July 12, the Administrator account ran commands including `whoami`, `net user`, `tasklist`, and `ipconfig`. These commands can be used for normal administration, but in this case they were followed by the creation of a local account named `backdoor` and its addition to the local Administrators group.
 
-On July 12, 2 days after - a commandline was run by Admin: "whoami.exe" on the same endpoint device from July 10th, 2026. Tasklist.exe was ran as well, and ipconfig.exe subsequently.
-
-This series of commands on the endpoint is not suspicious on its own but what happened immediately after flagged it very suspicious, as net.exe was used to create a backdoor in commandline.
-
-So this validates why the earlier commands were ran. Attackers love using legitimate commandline tools. The tasklist.exe when ran will show all running processes. Adversaries can run this sometimes to know the process running on the device at that moment, and see if any process can hinder whatever they want to achieve on the endpoint then they will terminate it.
-
-Net.exe when ran by adversary as well is used to gather information about the users and privileges available on that endpoint. This helps how they can move laterally.
-
-Ipconfig.exe was used to see network configuration and all running network connectivity helping adversary see how they can connect outbound if planning a C2 Beacon Attack.
-
-It only makes sense for XDR to flag and correlate after all this commands was ran and a backdoor  which is a new user — was created on the endpoint.
-All alerts was related to the same endpoint and was carried out by the same user hence the XDR correlation of events.
+The sequence of activity is important. The reconnaissance commands alone do not prove malicious activity, but the account creation and privilege change that followed made the activity more suspicious. The shared endpoint and related activity across the two-day timeline help explain why Microsoft Defender XDR grouped the alerts into one incident.
 
 ---
 
