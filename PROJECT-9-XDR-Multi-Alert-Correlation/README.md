@@ -254,9 +254,13 @@ The incident would be escalated to the appropriate IT and Security Operations te
 
 ## Objective
 
-The objective of this investigation was to determine the scope of compromise and identify whether the compromised Administrator account or the attacker-created Backdoor account accessed additional resources within the environment.
+In a real incident, I would investigate whether the compromised Administrator account or the newly created Backdoor account accessed other endpoints within the environment.
 
-The investigation aimed to answer the following questions:
+Since the simulated attack in this project occurred on one endpoint, I documented the KQL queries I would use to investigate possible lateral movement and check for suspicious activity on other devices.
+
+The queries below demonstrate how I would approach this step using the available security logs. They were documented as part of the investigation procedure and were not executed as part of this project.
+
+The investigation would aim to answer the following questions:
 
 - Did the compromised Administrator account or attacker-created Backdoor account access other endpoints within the network during the incident timeframe?
 - Did either account execute enumeration commands on other endpoints during the investigation period?
