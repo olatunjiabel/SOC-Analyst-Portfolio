@@ -13,7 +13,7 @@
 | **Incident ID** | 204 |
 | **Severity** | High |
 | **Status** | Active |
-| **Verdict** | True Positive Benign — Authorized Security Simulation |
+| **Verdict** | True Positive — Authorized Security Simulation |
 | **Total Alerts** | 16 |
 | **Observed Indicators and Artifacts** | Backdoor local account created and added to the local Administrators group via net.exe; EICAR test file created at C:\Temp\eicar.com via powershell.exe |
 | **Observed Attack Activity** | CertUtil used via PowerShell to attempt to download eicar.txt on July 10, followed by reconnaissance commands, local account creation, and addition of the account to the local Administrators group on July 12 |
