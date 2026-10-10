@@ -155,7 +155,7 @@ All alerts was related to the same endpoint and was carried out by the same user
 
 ## Incident Response Procedure
 
-The following outlines the incident response procedure that would be followed for this incident type, building on the automated remediation already performed by XDR and MDE. This section documents recommended manual response steps an analyst would take, rather than actions already executed in this lab environment.
+This section covers the incident response steps taken during the investigation and the additional actions I would recommend during a real incident. The investigation and automated remediation were performed in the lab, while the additional containment, recovery, and monitoring steps are recommendations for a real environment.
 
 ### 1. Alert Validation and Investigation
 
