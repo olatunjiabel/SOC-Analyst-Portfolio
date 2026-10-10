@@ -115,14 +115,14 @@ All alerts was related to the same endpoint and was carried out by the same user
 
 ---
 
-## Indicators of Compromise (IOC)
+## Observed Indicators and Artifacts
 
 **Evidence and Response tab — all 5 confirmed evidence items:**
 ![Evidence and Response Overview](screenshots/Evidence-and-Response-tab-overview.png)
 
 - Local user account named "backdoor" created via net.exe  command: "net.exe" user backdoor ******** /add — executed Jul 12, 2026, 9:49:35 AM
 - Backdoor account escalated to local Administrators group via net.exe — command: "net.exe" localgroup administrators backdoor /add — executed Jul 12, 2026, 9:49:44 AM (9 seconds after account creation)
-- eicar.com file (68 B) created via powershell.exe (PID 2380) at C:\Temp\eicar.com — Jul 10, 2026, 1:00:36 PM — SHA1: 3395856ce81f2b7382dee72602f798b642f14140 — VirusTotal detection ratio 66/68 — quarantined as Virus:DOS/EICAR_Test_File
+- EICAR test file `eicar.com` (68 B) created via powershell.exe (PID 2380) at C:\Temp\eicar.com — Jul 10, 2026, 1:00:36 PM — SHA1: 3395856ce81f2b7382dee72602f798b642f14140 — VirusTotal detection ratio 66/68 — quarantined as Virus:DOS/EICAR_Test_File. This is a test artifact, not evidence that real malware was present.
 - Trojan:Win32/Ceprolad.A — blocked before execution via certutil.exe run under the same powershell.exe process (PID 2380), Jul 10, 2026, 12:58:49 PM
 - Second malicious PowerShell.exe execution (PID 13672) — bare invocation, no visible payload in command line, Blocked, execution time Jul 12, 2026, 9:16:27 AM
 
