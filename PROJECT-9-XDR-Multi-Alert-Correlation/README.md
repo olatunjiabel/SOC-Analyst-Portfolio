@@ -348,21 +348,22 @@ To detect and prevent similar attacks, organizations should:
 ## Lessons Learned
 
 - **How XDR Correlates Alerts into Incidents**  
-  I was able to study the patterns XDR looks out for when correlating multiple alerts into a single incident.  
-  In this case, the correlation was based on the same device, the same user, and related activities even after 2 days.
+  I learned how Microsoft Defender XDR can correlate related alerts into a single incident. In this case, the activity occurred on the same endpoint over two days.
 
 - **Analytical Thinking**  
-  This project improved my analytical thinking. I had to think about how to connect the dots between different events and timelines to understand the full details of the incident.
+  This project improved my ability to connect events from different timelines and understand how individual activities can form part of a larger attack sequence.
+
+- **Investigation Process**  
+  I learned the importance of reviewing the Alert Story, incident timeline, process activity, and affected accounts instead of investigating each alert in isolation.
 
 - **Staying Calm Under Pressure**  
-  Even though this project was a simulation, it felt real because I was initially overwhelmed by the number of alerts generated. However, I stayed calm and began the investigation by reviewing the Alert Story and timeline.
+  Even though this project was a simulation, I was initially overwhelmed by the number of alerts generated. I stayed calm and started the investigation by reviewing the Alert Story and timeline.
 
 - **MITRE ATT&CK Mapping**  
-  Once again, in this project, I was able to map adversary actions to the correct MITRE ATT&CK techniques and understand how attacker behavior aligns with different tactics.
+  I learned how to map observed activities, such as file download attempts, account creation, and privilege escalation, to relevant MITRE ATT&CK techniques.
 
 - **Value of EDR/XDR**  
-  This project showed me the importance of having endpoint detection and XDR correlation capabilities in a security environment.  
-  Microsoft Defender for Endpoint blocked the download attempt and quarantined the EICAR file, demonstrating the value of automated detection and response.
+  This project showed me the importance of endpoint detection and XDR correlation. Microsoft Defender for Endpoint blocked the detected Trojan and quarantined the EICAR test file, demonstrating how security tools can help detect and respond to suspicious activity.
 
 
 
