@@ -333,15 +333,17 @@ If this happened on a critical server, containing the incident could require iso
 
 To detect and prevent similar attacks, organizations should:
 
-- Deploy an **Endpoint Detection and Response (EDR)** solution to detect and prevent malware execution, suspicious process activity, and attacker behavior.
+- Deploy an **Endpoint Detection and Response (EDR)** solution to detect suspicious PowerShell activity, CertUtil file downloads, and other unusual process activity.
 
-- Maintain an **Incident Response Team** and an **Incident Response Plan** to ensure security incidents are properly investigated, contained, and remediated.
+- Create **detection rules** for suspicious local account creation and unexpected changes to the local Administrators group.
 
-- Deploy automated **SOAR playbooks** to accelerate incident response actions such as device isolation, account disabling, and security notifications.
+- Monitor sequences of reconnaissance commands such as `whoami`, `net user`, `tasklist`, and `ipconfig`, especially when followed by account creation or privilege escalation.
 
-- Conduct **Threat Hunting (Proactive Hunting)** to identify suspicious activities before they escalate into a larger security incident.
+- Use **SIEM analytics rules** in Microsoft Sentinel to identify related events and investigate whether the same activity occurs on other endpoints.
 
-- Create **Analytics Rules** and **Detection Rules** in a **SIEM** platform to detect similar attacks, known threats, and suspicious activities within the environment.
+- Use **SOAR playbooks** to support incident response actions such as device isolation, disabling unauthorized accounts, and sending security notifications.
+
+- Maintain an **Incident Response Plan** and conduct threat hunting to investigate suspicious activity, determine the scope of a compromise, and improve detection coverage.
 
 ## Lessons Learned
 
