@@ -45,10 +45,10 @@
 			"showSubtechniques": false
 		},
 		{
-			"techniqueID": "T1218",
-			"tactic": "stealth",
+			"techniqueID": "T1105",
+			"tactic": "command-and-control",
 			"color": "#fce93b",
-			"comment": "The LOLBIN (Certutil) used to try to download Eicar.com File.\n",
+			"comment": "CertUtil used to try to download eicar.txt.\n",
 			"enabled": true,
 			"metadata": [],
 			"links": [],
