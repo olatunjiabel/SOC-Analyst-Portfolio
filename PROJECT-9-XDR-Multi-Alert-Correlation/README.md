@@ -8,15 +8,15 @@
 | **Analyst** | Olatunji Abel |
 | **Platform** | Microsoft Defender XDR, Microsoft Defender for Endpoint, Microsoft Sentinel |
 | **Device** | win-5l3oittdjlp (Windows Server 2022) |
-| **User** | WIN-5L3OITTDJLP\Administrator |
+| **User** | WIN-5L3OITTDJLP\Administrator; backdoor (local account created during the incident) |
 | **Incident Title** | Hands-on keyboard attack was launched from a compromised account |
 | **Incident ID** | 204 |
 | **Severity** | High |
 | **Status** | Active |
 | **Verdict** | True Positive Benign — Authorized Security Simulation |
 | **Total Alerts** | 16 |
-| **Indicator of Compromise** | Backdoor local account created and escalated to local Administrators group via net.exe; eicar.com file created at C:\Temp\eicar.com via powershell.exe |
-| **Indicator of Attack** | LOLBin abuse via certutil.exe (-urlcache -split -f) to download eicar.txt on July 10, followed by a reconnaissance-to-persistence sequence (whoami, net user enumeration, tasklist, ipconfig, backdoor account creation and privilege escalation) on July 12 |
+| **Observed Indicators and Artifacts** | Backdoor local account created and added to the local Administrators group via net.exe; EICAR test file created at C:\Temp\eicar.com via powershell.exe |
+| **Observed Attack Activity** | CertUtil used via PowerShell to attempt to download eicar.txt on July 10, followed by reconnaissance commands, local account creation, and addition of the account to the local Administrators group on July 12 |
 
 ---
 
