@@ -22,7 +22,7 @@
 
 ## Executive Summary
 
-This incident involved a hands-on-keyboard attack launched from a compromised administrator account on endpoint win-5l3oittdjlp. A total of 16 alerts were generated and correlated by Microsoft Defender XDR into a single incident. The attack began on July 10, 2026, 12:24:11 PM, when certutil.exe was invoked via a PowerShell process (PID 2380) to download a file from a GitHub raw content URL — this was blocked as Trojan:Win32/Ceprolad.A. The same PowerShell process then created a file named eicar.com, which was detected and quarantined as Virus:DOS/EICAR_Test_File. Two days later, on July 12, 2026, the same compromised account ran a reconnaissance sequence (whoami, net user enumeration, tasklist, ipconfig) followed by creation and privilege escalation of a backdoor local account. Identity compromise and privilege escalation were observed, affecting one device and two users. All malicious activity was automatically remediated by XDR and Microsoft Defender for Endpoint.
+This incident involved a hands-on-keyboard attack launched from a compromised administrator account on endpoint win-5l3oittdjlp. A total of 16 alerts were generated and correlated by Microsoft Defender XDR into a single incident. The first alert was generated on July 10, 2026, at 12:24:11 PM. Later, at 12:58:49 PM, certutil.exe was invoked via a PowerShell process (PID 2380) to download a file from a GitHub raw content URL — this was blocked as Trojan:Win32/Ceprolad.A. The same PowerShell process then created a file named eicar.com, which was detected and quarantined as Virus:DOS/EICAR_Test_File. Two days later, on July 12, 2026, the same compromised account ran a reconnaissance sequence (whoami, net user enumeration, tasklist, ipconfig) followed by creation and privilege escalation of a backdoor local account. Identity compromise and privilege escalation were observed, affecting one device and two users. All malicious activity was automatically remediated by XDR and Microsoft Defender for Endpoint.
 
 ![Incident Summary](screenshots/Potential-human-operated-malicious-activity.png)
 
@@ -137,7 +137,7 @@ All alerts was related to the same endpoint and was carried out by the same user
 
 | Tactic | Technique ID | Technique Name | Evidence |
 |---|---|---|---|
-| Defense Evasion | T1218.010 | System Binary Proxy Execution: Certutil | certutil.exe used via PowerShell to download eicar.txt |
+| Command and Control | T1105 | Ingress Tool Transfer | certutil.exe used via PowerShell to attempt to download eicar.txt |
 | Discovery | T1033 | System Owner/User Discovery | whoami.exe executed twice (9:19:01 AM, 9:48:48 AM) |
 | Discovery | T1087.001 | Account Discovery: Local Account | "net.exe" user executed at 9:48:58 AM to enumerate local accounts |
 | Discovery | T1057 | Process Discovery | tasklist.exe executed at 9:49:08 AM |
@@ -292,8 +292,8 @@ DeviceProcessEvents
 | order by TimeGenerated desc
 ```
 ### 2. Logon Check
+
 ```kql
-### 2. Logon Check
 DeviceLogonEvents
 | where TimeGenerated between (datetime(2026-07-10) .. datetime(2026-07-12 23:59:59))
 | where AccountName in~ ("Administrator", "Backdoor")
