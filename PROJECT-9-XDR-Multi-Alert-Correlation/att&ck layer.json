@@ -105,7 +105,7 @@
 			"showSubtechniques": false
 		},
 		{
-			"techniqueID": "T1078",
+			"techniqueID": "T1098",
 			"tactic": "privilege-escalation",
 			"color": "#e60d0d",
 			"comment": "\"backdoor\" account added to local Administrators group.",
@@ -115,7 +115,7 @@
 			"showSubtechniques": true
 		},
 		{
-			"techniqueID": "T1078.003",
+			"techniqueID": "T1098.007",
 			"tactic": "privilege-escalation",
 			"color": "#e60d0d",
 			"comment": "",
