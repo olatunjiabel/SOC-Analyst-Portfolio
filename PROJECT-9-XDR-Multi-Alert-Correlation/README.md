@@ -313,23 +313,19 @@ DeviceLogonEvents
 
 ## Business Impact
 
-Firstly, the **EICAR.com** file that was downloaded or created on the system is a test file that all antivirus companies agreed to always flag as a virus for simulation purposes.
+The **EICAR.com** file created on the system is a harmless test file used to check whether antivirus software can detect and respond to a test threat.
 
-Although the EICAR file is harmless, if the same attack technique was used with a real malware file, it could pose a serious threat to an organization.
+Although the EICAR file is harmless, using the same download technique with real malware could pose a serious threat to an organization.
 
 ### Asset Impact
 
-If the EICAR file was a real malware payload and **Microsoft Defender for Endpoint (MDE)** and **Microsoft Defender XDR** were not available to detect and quarantine it immediately, the malware could have successfully executed on the device.
+If a real malware payload had been downloaded instead of the test file, and Microsoft Defender for Endpoint (MDE) and Microsoft Defender XDR had not detected and blocked it, the device could have been exposed to malware infection, ransomware, or other malicious activity.
 
-This could lead to malware infection, ransomware deployment, or other malicious activities that could continue spreading throughout the network.
+The reconnaissance activity observed on the device, followed by the creation of a **Backdoor** account and its addition to the local Administrators group, created a serious security risk.
 
-The reconnaissance activity performed on the device, followed by the successful creation of a **Backdoor** account and privilege escalation, already puts the device identity at risk.
+If an attacker controlled this account, they could have used its administrative privileges to make further changes to the affected endpoint.
 
-The immediate business impact is that if the incident is discovered before the complete takeover of the compromised identity, the affected device would need to be isolated from the network.
-
-This could cause downtime, especially if the compromised device is a critical server, which could directly affect business operations.
-
-The privilege escalation observed in this incident, where the Backdoor account was added to the **Administrators** group, puts the organization at risk because the adversary no longer operates with least-privilege access.
+If this happened on a critical server, containing the incident could require isolating the device from the network. This could cause downtime and affect business operations.
 
 ---
 
