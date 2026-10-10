@@ -95,12 +95,12 @@ The sequence of activity is important. The reconnaissance commands alone do not 
 
 ## Indicators of Attack (IOA)
 
-- **certutil.exe LOLBin abuse** — invoked via PowerShell (PID 2380) with -urlcache -split -f to download eicar.txt from a GitHub raw content URL, taking advantage of a trusted Windows binary rather than a custom tool — a standard adversary technique to evade detection
-- **whoami.exe execution (x2)** — run once early (9:19:01 AM) and again immediately before the main sequence (9:48:48 AM, with /all) — used by adversary to confirm identity/context of the compromised account
-- **net.exe user (enumeration)** — run at 9:48:58 AM with no target account specified, indicating the adversary was checking existing local accounts before creating a new one
-- **tasklist.exe execution** — used to enumerate running processes; adversaries use this to check whether any process could interfere with their objective, and terminate it if needed
-- **ipconfig.exe /all execution** — used to review network configuration and connectivity, helping the adversary assess outbound connectivity for a potential C2 beacon
-- **Sequenced recon-to-persistence behavior** — the tight sequence (whoami → account enumeration → tasklist → ipconfig → account creation → privilege escalation, all within roughly 45 seconds) is consistent with a scripted or rehearsed attacker playbook rather than exploratory behavior
+- **certutil.exe LOLBin abuse** — invoked via PowerShell (PID 2380) with `-urlcache -split -f` to attempt to download `eicar.txt` from a GitHub raw content URL. CertUtil is a legitimate Windows tool that can also be misused for file downloads.
+- **whoami.exe execution (x2)** — run at 9:19:01 AM and 9:48:48 AM (with `/all`). This command can reveal the current user and security context.
+- **net.exe user (enumeration)** — run at 9:48:58 AM with no target account specified, consistent with checking existing local accounts before creating a new one.
+- **tasklist.exe execution** — used to list running processes. This can help an investigator understand what was running on the endpoint; an attacker could also use it to identify processes of interest.
+- **ipconfig.exe /all execution** — used to display network configuration. This information could help an attacker understand the endpoint's network settings, but the command alone does not establish an intent to contact command-and-control infrastructure.
+- **Sequenced reconnaissance and account changes** — the sequence (`whoami` → account enumeration → `tasklist` → `ipconfig` → account creation → addition to the local Administrators group) occurred within roughly 45 seconds. This sequence is suspicious, although the available evidence alone does not establish whether it was scripted.
 
 ---
 
@@ -139,9 +139,6 @@ The sequence of activity is important. The reconnaissance commands alone do not 
 
 ---
 
-
----
-
 ## Incident Response Procedure
 
 This section covers the incident response steps taken during the investigation and the additional actions I would recommend during a real incident. The investigation and automated remediation were performed in the lab, while the additional containment, recovery, and monitoring steps are recommendations for a real environment.
@@ -167,11 +164,11 @@ Advanced Hunting queries, Alert-story, Incident graph, Timeline were used to val
 
 The investigation confirmed malicious activity due to the sequence of reconnaissance commands followed by the creation of a privileged backdoor account.
 
-### 2. Device Containment
+### 2. Recommended Device Containment
 
-Because the endpoint generated multiple alerts that were correlated into a single incident, and the investigation confirmed the creation of a backdoor administrative account, the affected device would require immediate containment.
+The creation of a backdoor administrative account makes containment an important response step in a real incident. The following actions are recommendations, not actions documented as completed in this lab.
 
-Containment actions:
+Recommended containment actions:
 
 - Isolate `win-5l3oittdjlp` from the network using Microsoft Defender for Endpoint.
 - Prevent further communication between the compromised endpoint and other systems.
@@ -179,11 +176,11 @@ Containment actions:
 
 Device isolation limits the attacker's ability to execute additional commands, maintain persistence, or access other resources within the environment.
 
-### 3. Account Remediation
+### 3. Recommended Account Remediation
 
-The compromised Administrator account should be investigated and secured, since it was used to execute the malicious activity.
+The Administrator account should be investigated and secured because it was used during the observed activity. The following actions are recommendations for a real incident, not actions documented as completed in this lab.
 
-Remediation actions:
+Recommended remediation actions:
 
 - Reset the password of the compromised Administrator account.
 - Revoke active sessions associated with the compromised account.
@@ -194,17 +191,17 @@ These actions prevent the attacker from maintaining privileged access to the end
 
 ### 4. Malware and Artifact Removal
 
-The endpoint should be reviewed to confirm that malicious artifacts have been fully removed.
+The following response was documented in the lab, along with an additional recommended check:
 
-Actions performed/verified:
+Actions observed or documented:
 
-- Verify that the EICAR file located at C:\Temp\eicar.com was successfully quarantined by Microsoft Defender Antivirus.
-- Confirm the remediation status of the detected threats.
-- Perform additional endpoint scans to identify any remaining malicious files, scripts, or persistence mechanisms.
+- Microsoft Defender Antivirus quarantined the EICAR test file at `C:\Temp\eicar.com` successfully.
+- Defender reported successful removal of the detected Trojan.
+- **Recommended follow-up:** Perform additional endpoint scans to look for any remaining malicious files, scripts, or persistence mechanisms.
 
-### 5. Blast Radius Investigation
+### 5. Recommended Blast Radius Investigation
 
-Microsoft Defender XDR and Microsoft Sentinel would be used to investigate the scope of the compromise.
+Microsoft Defender XDR and Microsoft Sentinel could be used to investigate the scope of the compromise. The KQL queries documented below were not executed as part of this project.
 
 The investigation focuses on:
 
@@ -224,9 +221,9 @@ Relevant data sources to investigate:
 
 The objective is to determine whether the attacker moved laterally or compromised additional systems.
 
-### 6. Recovery and Monitoring
+### 6. Recommended Recovery and Monitoring
 
-After successful containment and remediation:
+After containment and remediation have been completed and validated in a real incident:
 
 - The affected endpoint would be returned to normal operation after validation.
 - Microsoft Defender security controls would be confirmed as active.
@@ -235,13 +232,13 @@ After successful containment and remediation:
 
 Continuous monitoring would be maintained to detect any attempt by the attacker to regain access.
 
-### 7. Escalation and Documentation
+### 7. Recommended Escalation and Documentation
 
-The incident would be escalated to the appropriate IT and Security Operations teams, with full documentation of findings, timeline, and remediation steps provided for record-keeping and post-incident review.
+In a real incident, the case should be escalated to the appropriate IT and Security Operations teams, with the findings, timeline, and remediation steps documented for record-keeping and post-incident review.
 
-# Blast Radius Investigation
+## Blast Radius Investigation Queries
 
-## Objective
+### Objective
 
 In a real incident, I would investigate whether the compromised Administrator account or the newly created Backdoor account accessed other endpoints within the environment.
 
