@@ -135,8 +135,7 @@ logon events:
 
 - Monitor for **EventID 4625** (failed logon) and **EventID 
   4624** (successful logon) together
-- Filter by **Logon Type 3 and 10** — these indicate network 
-  and remote interactive logons specific to RDP
+- Review **Logon Type 10** for remote interactive logons commonly associated with RDP. **Logon Type 3** represents network logons and is not specific to RDP.
 - Apply a threshold of **10 or more failed attempts within a 
   30 minute window** from the same IP against the same account
 - My query also correlates failed attempts with a subsequent 
@@ -202,11 +201,7 @@ tactic because the adversary used PowerShell as their scripting
 interpreter to carry out the attack.
 
 **2. T1140 – Deobfuscate/Decode Files or Information**
-Certutil was used to run encoded commands. I mapped this to 
-Deobfuscate/Decode Files or Information under the Defense 
-Evasion tactic because encoding commands is a technique 
-adversaries use to hide malicious activity from security tools 
-and analysts.
+I considered T1140 because the investigation involved encoded command-line activity and Certutil, which can be used for encoding and decoding. The mapping should be based on evidence of actual decoding or deobfuscation, not encoding alone.
 
 **3. T1105 – Ingress Tool Transfer**
 Certutil was observed trying to download a file using URLcache 
@@ -242,10 +237,7 @@ built a detection rule in Project 5 to catch anomalies like this.
 After identifying the process behavior, I checked 
 DeviceNetworkEvents to look for any outbound connections made 
 within the same time window. This answers the question — 
-"Is this a C2 beacon attack?" By checking for any external IP 
-address that certutil was used to connect to, I can determine 
-whether the adversary successfully established communication 
-with a command and control server.
+"Is this potentially related to C2 activity?" An external connection alone does not confirm command-and-control activity or prove that a download succeeded. The destination and surrounding process activity need further investigation.
 
 ### Detection Rule
 ```kql
@@ -284,9 +276,11 @@ SuspiciousProcesses
 
 ## ATT&CK Navigator Heatmap
 
-The following heatmap shows all techniques mapped across the 
-three findings in this project. Green indicates full detection 
-coverage with a written KQL detection rule.
+The following heatmap shows the techniques mapped across the 
+three findings in this project. Green represents the coverage 
+recorded in the Navigator layer. A written KQL detection rule 
+documents a detection approach, but does not by itself prove 
+that every instance of a technique will be detected.
 
 ![ATT&CK Navigator Heatmap](screenshots/att&ck-navigator-heatmap.png)
 
@@ -305,8 +299,8 @@ coverage with a written KQL detection rule.
 | LOLBin - Certutil Download | Command and Control | T1105 | Ingress Tool Transfer | ✅ Detected |
 
 **Total Techniques Mapped: 5**
-**Fully Detected: 5**
-**Coverage Gaps: 0**
+**Detection rules documented: 5**
+**Coverage gaps recorded in the Navigator layer: 0**
 
 ---
 
