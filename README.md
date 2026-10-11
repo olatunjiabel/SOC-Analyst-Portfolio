@@ -1,105 +1,102 @@
 # SOC Analyst Portfolio | Microsoft Security & Threat Investigation
 
-Hands-on cybersecurity portfolio focused on security monitoring, detection, incident investigation, threat intelligence, and security automation.
+Hands-on portfolio documenting security monitoring, detection, incident investigation, security automation, and cyber threat intelligence through lab projects and evidence-based reports.
 
-I am working toward a career in Security Operations (SOC), with practical experience using Microsoft security tools and documenting investigations in a structured, evidence-based way.
+**Primary focus:** SOC operations and Microsoft security  
+**Certifications:** Microsoft SC-200 and SC-900  
+**Education:** OND in Computer Engineering
 
-## About Me
+## What This Portfolio Demonstrates
 
-I am Olatunji Abel, a cybersecurity practitioner building practical skills in security operations. This portfolio documents lab projects, investigation workflows, detection logic, and lessons learned using Microsoft Sentinel, Microsoft Defender, KQL, OpenCTI, and related tools.
-
-I hold the Microsoft SC-200 Security Operations Analyst certification and the SC-900 Security, Compliance, and Identity Fundamentals certification.
-
-## Core Skills
-
-- Security monitoring and incident investigation
-- KQL query development and log analysis
+- Security alert triage and incident investigation
+- KQL and security telemetry analysis
 - Microsoft Sentinel and Microsoft Defender XDR
 - Windows Security Events and Sysmon process telemetry
 - Threat intelligence research and IOC analysis
-- MITRE ATT&CK mapping
-- Phishing email investigation and email authentication analysis
-- Sentinel automation rules, Logic Apps, and analyst notifications
-- Evidence-based reporting and investigation documentation
+- MITRE ATT&CK mapping and detection planning
+- Phishing email investigation and authentication checks
+- Sentinel/Logic Apps analyst notification workflows
+- Structured investigation reports and evidence-based conclusions
 
 ## Tools & Technologies
 
-**Microsoft security:** Microsoft Sentinel, Microsoft Defender XDR, Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Entra ID  
-**Detection and telemetry:** KQL, Log Analytics Workspace, Windows Security Events, Sysmon, Advanced Hunting  
-**Threat intelligence and frameworks:** OpenCTI, AlienVault OTX, VirusTotal, MITRE ATT&CK  
-**Cloud and automation:** Microsoft Azure, Azure Arc, Logic Apps, Sentinel playbooks
+- **Microsoft security:** Microsoft Sentinel, Microsoft Defender XDR, Defender for Endpoint, Defender for Office 365, Microsoft Entra ID
+- **Detection and telemetry:** KQL, Log Analytics Workspace, Windows Security Events, Sysmon, Advanced Hunting
+- **Threat intelligence and frameworks:** OpenCTI, AlienVault OTX, VirusTotal, MITRE ATT&CK
+- **Cloud and automation:** Microsoft Azure, Azure Arc, Logic Apps, Sentinel playbooks
+- **Lab infrastructure:** Windows Server, Linux/Ubuntu, VMware, Docker
 
 ---
 
 ## Featured Projects
 
-These projects are highlighted for the range of investigation, detection, and threat-analysis skills they demonstrate. Each project page contains its own methodology, evidence, and findings.
+The projects below are highlighted for their investigation, detection, and threat-analysis value. Read each project report for its scope, evidence, methods, findings, and limitations.
 
 ### 1. XDR Multi-Alert Correlation Investigation
 
-Investigated a Microsoft Defender XDR incident containing 16 correlated alerts across a two-day timeline. Reviewed the observed CertUtil activity, endpoint events, reconnaissance commands, and local account changes. Documented the incident timeline, ATT&CK mapping, response procedure, and business impact assessment.
+Investigated a Microsoft Defender XDR incident containing 16 correlated alerts across a two-day timeline. Reviewed observed CertUtil activity, endpoint events, reconnaissance commands, and local account changes. Documented the incident timeline, ATT&CK mapping, response procedure, and business impact assessment.
 
-**Skills demonstrated:** Microsoft Defender XDR, Advanced Hunting, telemetry validation, incident timeline analysis, ATT&CK mapping, incident response documentation.
+**Skills:** Microsoft Defender XDR, Advanced Hunting, telemetry review, incident timeline analysis, ATT&CK mapping, incident response documentation.
 
-[View Project 9](PROJECT-9-XDR-Multi-Alert-Correlation/README.md)
+[Read Project 9](PROJECT-9-XDR-Multi-Alert-Correlation/README.md)
 
 ### 2. CertUtil LOLBin & Ceprolad Investigation
 
-Investigated simulated CertUtil misuse and suspicious process activity using Windows process telemetry and Microsoft Sentinel. The project examines command-line arguments, parent-child process relationships, and suspicious execution patterns. Network activity is treated as investigative context, not proof by itself that a download succeeded or that every related connection was generated by CertUtil.
+Investigated simulated CertUtil misuse and suspicious process activity using Windows process telemetry and Microsoft Sentinel. The project examines command-line arguments, parent-child process relationships, and suspicious execution patterns. Network activity is treated as context, not proof by itself that a download succeeded or that every related connection was generated by CertUtil.
 
-**Skills demonstrated:** LOLBin investigation, Sysmon, process analysis, KQL, Microsoft Sentinel.
+**Skills:** LOLBin investigation, Sysmon, process analysis, KQL, Microsoft Sentinel.
 
-[View Project 5](PROJECT-5-certutil-lolbin-ceprolad-investigation/README.md)
+[Read Project 5](PROJECT-5-certutil-lolbin-ceprolad-investigation/README.md)
 
 ### 3. Threat Intelligence Investigation with OpenCTI
 
-Conducted a threat intelligence investigation using OpenCTI, AlienVault OTX, and MITRE ATT&CK. The work includes researching selected threats, reviewing indicators and related threat activity, and documenting analytical findings in a structured report.
+Used OpenCTI, AlienVault OTX, and MITRE ATT&CK to research selected threats, review indicators and related threat activity, and document an intelligence assessment.
 
-**Skills demonstrated:** Threat intelligence research, IOC analysis, threat-actor and malware research, ATT&CK mapping, investigation reporting.
+**Skills:** Threat intelligence research, IOC analysis, malware and threat-actor research, ATT&CK mapping, investigation reporting.
 
-[View Threat Intelligence Project](https://github.com/olatunjiabel/threat-intelligence-investigation)
+[Read the Threat Intelligence Investigation](https://github.com/olatunjiabel/threat-intelligence-investigation)
 
 ### 4. Sentinel SOAR: Brute Force Alert Notification
 
-Built a Microsoft Sentinel and Logic Apps workflow in which a brute-force incident triggers an email notification to the SOC analyst through Outlook. The documented workflow demonstrates incident notification and automation, not automatic blocking or account remediation.
+Built a Microsoft Sentinel and Logic Apps workflow in which a brute-force incident triggers an email notification to the SOC analyst through Outlook. This demonstrates incident notification and workflow automation, not automatic blocking or account remediation.
 
-**Skills demonstrated:** Sentinel analytics and automation rules, Logic Apps, playbook integration, permissions troubleshooting.
+**Skills:** Sentinel analytics and automation rules, Logic Apps, playbook integration, permissions troubleshooting.
 
-[View Project 6](PROJECT-6-Sentinel-SOAR-BruteForce-Automation/README.md)
+[Read Project 6](PROJECT-6-Sentinel-SOAR-BruteForce-Automation/README.md)
 
 ### 5. Email Phishing Detection & Investigation
 
 Used Microsoft Defender for Office 365 Attack Simulation Training to run an authorized phishing simulation, then investigated the email and user interaction in Threat Explorer. Reviewed sender details, URLs, SPF, DKIM, and DMARC results, and checked sender IP reputation. The simulation recorded submission of information on the training page; this is not evidence that a real password was collected.
 
-**Skills demonstrated:** Email investigation, Threat Explorer, email authentication, URL review, threat-intelligence validation.
+**Skills:** Email investigation, Threat Explorer, email authentication, URL review, threat-intelligence validation.
 
-[View Project 7](PROJECT-7-Email%20phishing%20detection%20and%20investigation%20using%20microsoft%20defender%20for%20office%20365/README.md)
+[Read Project 7](PROJECT-7-Email%20phishing%20detection%20and%20investigation%20using%20microsoft%20defender%20for%20office%20365/README.md)
 
 ### 6. Adversary TTP Mapping with MITRE ATT&CK
 
-Mapped findings from earlier Azure lab simulations involving cloud sign-in brute force, RDP brute force, and LOLBin/CertUtil activity to ATT&CK techniques. Documented analyst reasoning and associated detection ideas. The Navigator layer records the mapped coverage; this should not be interpreted as proof that every technique is comprehensively detected.
+Mapped findings from earlier Azure lab simulations involving cloud sign-in brute force, RDP brute force, and LOLBin/CertUtil activity to ATT&CK techniques. Documented analyst reasoning and associated detection ideas. The Navigator layer records mapped coverage and is not proof that every technique is comprehensively detected.
 
-**Skills demonstrated:** ATT&CK technique mapping, detection planning, KQL, coverage documentation.
+**Skills:** ATT&CK technique mapping, detection planning, KQL, coverage documentation.
 
-[View Project 8](PROJECT-8-Adversary%20TTP%20Mapping%20with%20MITRE%20ATT%26CK/README.md)
+[Read Project 8](PROJECT-8-Adversary%20TTP%20Mapping%20with%20MITRE%20ATT%26CK/README.md)
 
 ---
 
-## All Projects
+## Complete Project Catalogue
 
-| Project | Focus | Details |
+| Project | Focus | Report |
 |---|---|---|
-| Project 0 | SOC Environment Setup | [View project](PROJECT-0-soc-enviroment-setup/README.md) |
-| Project 1 | Azure AD / Entra ID Brute Force Detection | [View project](PROJECT-1-detection-engineering/README.md) |
-| Project 2 | False Positive Brute Force Analysis | [View project](PROJECT-2-brute-force-detection/README.md) |
-| Project 3 | RDP Brute Force Detection & Investigation | [View project](PROJECT-3-RDP-brute-force-detection/README.md) |
-| Project 4 | LOLBin Process Abuse Detection | [View project](PROJECT-4-lolbins-process-detection) |
-| Project 5 | CertUtil LOLBin & Ceprolad Investigation | [View project](PROJECT-5-certutil-lolbin-ceprolad-investigation/README.md) |
-| Project 6 | Sentinel SOAR Brute Force Notification | [View project](PROJECT-6-Sentinel-SOAR-BruteForce-Automation) |
-| Project 7 | Email Phishing Detection & Investigation | [View project](PROJECT-7-Email%20phishing%20detection%20and%20investigation%20using%20microsoft%20defender%20for%20office%20365/README.md) |
-| Project 8 | Adversary TTP Mapping with MITRE ATT&CK | [View project](PROJECT-8-Adversary%20TTP%20Mapping%20with%20MITRE%20ATT%26CK/README.md) |
-| Project 9 | XDR Multi-Alert Correlation Investigation | [View project](PROJECT-9-XDR-Multi-Alert-Correlation/README.md) |
-| Threat Intelligence | OpenCTI Threat Intelligence Investigation | [View project](https://github.com/olatunjiabel/threat-intelligence-investigation) |
+| Project 0 | SOC Environment Setup | [Read report](PROJECT-0-soc-enviroment-setup/README.md) |
+| Project 1 | Entra ID / Azure AD Brute Force Detection | [Read report](PROJECT-1-detection-engineering/README.md) |
+| Project 2 | False Positive Brute Force Analysis | [Read report](PROJECT-2-brute-force-detection/README.md) |
+| Project 3 | RDP Brute Force Detection & Investigation | [Read report](PROJECT-3-RDP-brute-force-detection/README.md) |
+| Project 4 | LOLBin Process Abuse Detection | [Read report](PROJECT-4-lolbins-process-detection/README.md) |
+| Project 5 | CertUtil LOLBin & Ceprolad Investigation | [Read report](PROJECT-5-certutil-lolbin-ceprolad-investigation/README.md) |
+| Project 6 | Sentinel SOAR Brute Force Notification | [Read report](PROJECT-6-Sentinel-SOAR-BruteForce-Automation/README.md) |
+| Project 7 | Email Phishing Detection & Investigation | [Read report](PROJECT-7-Email%20phishing%20detection%20and%20investigation%20using%20microsoft%20defender%20for%20office%20365/README.md) |
+| Project 8 | Adversary TTP Mapping with MITRE ATT&CK | [Read report](PROJECT-8-Adversary%20TTP%20Mapping%20with%20MITRE%20ATT%26CK/README.md) |
+| Project 9 | XDR Multi-Alert Correlation Investigation | [Read report](PROJECT-9-XDR-Multi-Alert-Correlation/README.md) |
+| Threat Intelligence | OpenCTI Threat Intelligence Investigation | [Read report](https://github.com/olatunjiabel/threat-intelligence-investigation) |
 
 ## Certifications & Education
 
@@ -109,18 +106,18 @@ Mapped findings from earlier Azure lab simulations involving cloud sign-in brute
 
 ## Career Focus
 
-My goal is to grow as a SOC Analyst, developing further capability in threat detection, incident investigation, threat hunting, and response. I aim to connect security telemetry and threat intelligence to clear, evidence-backed investigation findings.
+My immediate target is a SOC Analyst role. I am continuing to develop my capability in threat detection, incident investigation, threat hunting, and response, with an emphasis on connecting telemetry to clear, evidence-backed findings.
 
 ## Contact
 
-- **Location:** Nigeria
-- **GitHub:** [olatunjiabel](https://github.com/olatunjiabel)
-- **Portfolio repository:** [SOC Analyst Portfolio](https://github.com/olatunjiabel/SOC-Analyst-Portfolio)
+- **LinkedIn:** [linkedin.com/in/olatunji-olubi](https://www.linkedin.com/in/olatunji-olubi)
+- **GitHub profile:** [olatunjiabel](https://github.com/olatunjiabel)
+- **Threat intelligence project:** [OpenCTI Investigation](https://github.com/olatunjiabel/threat-intelligence-investigation)
 
 ---
 
 ## Disclaimer
 
-These projects document controlled lab exercises, simulations, and investigations. Lab simulations are not presented as attacks against real-world organizations. Findings and conclusions are limited to the evidence documented in each project.
+These repositories document controlled lab exercises, simulations, and investigations. Lab simulations are not presented as attacks against real-world organizations. Conclusions are limited to the evidence documented in each project.
 
 **Last updated:** October 2026
