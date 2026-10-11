@@ -34,11 +34,11 @@ I added the user I wanted the email to be sent to, and it was successfully deliv
 
 ## Investigation
 
-On receiving the email, the user clicked the **Review Details** link and entered the requested credentials.
+On receiving the email, the user clicked the **Review Details** link and submitted the requested information on the simulation page.
 
 ![Phishing Email Received](screenshots/Phishing-email-recieved.png)
 
-After entering the credentials, the following message was displayed:
+After submitting the information, the following message was displayed:
 
 > "You were just phished by your security."
 
@@ -87,42 +87,34 @@ The email contained **3 URLs**, but no threats were identified because the email
 
 ### What Each Result Means
 
-- **SPF** – The sender IP address was authorized to send email on behalf of the sending domain.
-- **DMARC** – The sending domain aligned with the authentication results.
-- **DKIM** – The email was digitally signed by the sending domain.
+- **SPF** – Checks whether the sending IP address is authorized to send email for the domain.
+- **DMARC** – Checks whether the message aligns with the domain's authentication policy, using SPF and/or DKIM results.
+- **DKIM** – Uses a digital signature to help verify that the message was signed by a domain and that signed parts of the message have not been changed.
 - **Attachments** – None.
 
-###  Analyst Observation
+### Analyst Observation
 
-As a SOC Analyst, emails passing SPF, DKIM, and DMARC do not automatically guarantee legitimacy.
+As a SOC analyst, I learned that emails passing SPF, DKIM, and DMARC checks are not automatically safe.
 
-An adversary can open a Gmail account and use it to send a phishing email.
+An attacker can use a legitimate email account to send phishing messages. The email may pass authentication checks because the sender is authorized to send from that domain and the checks can pass.
 
-The email will pass **SPF** because it is a legitimate email account on Google's domain.
+SPF, DKIM, and DMARC help verify sender authorization, email signatures, and domain alignment. They do not determine whether the email's content or intent is malicious.
 
-It will pass **DMARC** because the email is genuinely being sent from the sender's domain and aligns with the authentication checks.
-
-It will also pass **DKIM** because Gmail digitally signs outgoing emails on behalf of its domain.
-
-This demonstrates that SPF, DKIM, and DMARC only verify the legitimacy of the sending infrastructure. They do not determine whether the content or intent of the email is malicious.
-
-This is why user awareness training and additional security controls are still required even when email authentication checks pass successfully.
-
-
+This is why analysts must also investigate the sender, URLs, message content, and user activity rather than relying on authentication results alone. User awareness training and additional security controls are also important.
 
 ---
 
-## Microsoft Defender for Office 365 Capabilities Observed
+## Relevant Microsoft Defender for Office 365 Capabilities
 
-During the investigation, I reviewed several Microsoft Defender for Office 365 security capabilities that help detect, investigate, and respond to email-based threats.
+During the investigation, I reviewed information and capabilities relevant to detecting, investigating, and responding to email-based threats.
 
 | Feature | Description |
 |---------|-------------|
-| Safe Links | Detects malicious URLs and protects users from phishing links |
-| Safe Attachments | Performs sandbox analysis of email attachments |
+| Safe Links | Helps protect users from malicious URLs |
+| Safe Attachments | Analyzes email attachments for threats |
 | AIR | Automated Investigation and Response |
-| Investigation & Response | Allows URLs and emails to be submitted for investigation |
-| VirusTotal | Used to validate IP reputation |
+| Investigation & Response | Supports investigation and response to emails and URLs |
+| VirusTotal | Used in this project to check IP reputation |
 
 ## External Threat Intelligence Validation
 
@@ -155,11 +147,11 @@ In a real SOC environment, immediately after identifying and validating a phishi
 
 ### Automated Response
 
-Microsoft Defender for Office 365 Plan 2 includes **Automated Investigation and Response (AIR)** capabilities that can automatically investigate and remediate malicious emails, URLs, and user-reported threats.
+Microsoft Defender for Office 365 Plan 2 includes **Automated Investigation and Response (AIR)** capabilities that can automatically investigate and remediate certain email threats and related activities.
 
 AIR was not triggered during this simulation because the phishing email did not generate any alerts or incidents in Microsoft Defender. Since the phishing campaign was created using Microsoft's **Attack Simulation Training**, the email was part of an authorized simulation and was therefore treated differently from a real phishing attack.
 
-As a result, no automated remediation actions were observed during this exercise. In a real phishing incident, AIR could help contain the threat, investigate affected users, and reduce the overall blast radius of the attack.
+As a result, no automated remediation actions were observed during this exercise. In a real phishing incident, AIR may help investigate and remediate threats depending on the alert, configuration, and available capabilities.
 
 ### Proactive Investigation
 
@@ -170,7 +162,7 @@ As a result, no automated remediation actions were observed during this exercise
 ## Key Takeaways
 
 - SPF, DKIM, and DMARC passing does not mean an email is safe
-- An attacker using a legitimate account can still pass authentication checks
+- An attacker using a legitimate account can still send phishing messages
 - Threat Explorer provides visibility into sender information, recipients, delivery status, URLs, and click activity
 - User click activity can be tracked and investigated in Microsoft Defender
 - Human behaviour remains one of the biggest risks in phishing attacks
@@ -178,12 +170,11 @@ As a result, no automated remediation actions were observed during this exercise
 
 ---
 
-
 ## Lessons Learned
 
 This project showed me that emails passing SPF, DKIM, and DMARC do not automatically mean they are safe.
 
-The user Credential was still harvested even though all authentication checks passed.
+The simulation recorded that the user submitted the requested information, even though the email authentication checks passed. Because this was an authorized simulation, this does not show that a real password was collected.
 
 I also learned how to use Threat Explorer to investigate phishing emails, review URLs, check sender information, and analyze user activity.
 
@@ -193,18 +184,17 @@ This also helped me understand that advanced hunting and Microsoft Sentinel may 
 
 This project reinforced the importance of user awareness training and layered email security controls.
 
-
 ---
 
 ## Conclusion
 
-In this project, I simulated a credential harvesting phishing attack and investigated it using Microsoft Defender for Office 365.
+In this project, I simulated a credential-harvesting phishing attack and investigated it using Microsoft Defender for Office 365.
 
 I reviewed the sender information, URLs, user click activity, and authentication results.
 
-The investigation showed that phishing emails can still be successful even when SPF, DKIM, and DMARC pass.
+The investigation showed that phishing simulations can demonstrate how users may be tricked by messages even when email authentication checks pass.
 
-This project helped me gain hands-on experience with email phishing detection and investigation from a SOC analyst perspective.
+This project helped me gain hands-on experience with email phishing investigation from a SOC analyst perspective.
 
 ---
 
@@ -215,9 +205,10 @@ project-7-phishing-investigation/
 ├── README.md
 └── screenshots/
     ├── Attack-simulation-review.png
-    ├── Phishing-email-received.png
+    ├── Phishing-email-recieved.png
     ├── User-phished-confirmation.png
     ├── Threat-explorer-email-view.png
     ├── Url-click-investigation.png
-    └── Authentication-results.png
+    ├── Authentication-results.png
+    └── Sender-IP-Reputation-VirusTotal.png
 ```
