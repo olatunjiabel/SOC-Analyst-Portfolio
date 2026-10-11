@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-The main aim of this project is to design an automated response pipeline capable of automatically responding to alerts and incidents inside a SOC environment using Microsoft Sentinel and SOAR technologies.
+The main aim of this project is to build a SOAR workflow using Microsoft Sentinel and Logic Apps, with Microsoft 365 Outlook used for email notifications.
 
-This project demonstrates how some incidents can be handled automatically without requiring constant manual intervention from a SOC analyst.
+In this lab, I used a brute-force incident to trigger the automation workflow. When a matching incident is processed, the Logic App sends an email notification to the SOC analyst through Outlook.
 
-In this lab, Microsoft Sentinel was configured to detect potential brute-force authentication activity using Analytics Rules and KQL queries. Once suspicious activity is detected, an incident is automatically created and a Logic App playbook executes an automated response workflow.
+This project demonstrates how Microsoft Sentinel automation rules, Logic Apps, and Microsoft 365 can work together to notify a SOC analyst when a security incident occurs.
 
-The SOC analyst is then able to review the incident, investigate what happened, and validate the automated actions that were triggered inside the Defender portal.
+The project also helped me understand the permissions required to connect a Sentinel automation rule to a Logic App playbook.
 
 SOAR (Security Orchestration, Automation, and Response) refers to the automated activities and workflows put in place to respond to alerts and incidents more efficiently.
 
@@ -53,19 +53,13 @@ This project shows how SOAR can:
 
 ## What I Built
 
-Firstly, my aim is to detect brute-force automatically and respond automatically.
+I configured a Microsoft Sentinel Analytics Rule using KQL to detect potential brute-force activity and generate an incident.
 
-This involved me using Microsoft Sentinel and SOAR.
+I then created a Logic App playbook to send an email notification to the SOC analyst through Outlook when a matching incident triggers the workflow.
 
-I wrote a KQL to detect and an Analytics Rule was configured to alert or create an incident in Defender portal.
+When I tried to integrate the playbook with the Sentinel automation rule, I could not select the playbook. I resolved this by assigning the Sentinel Automation Contributor role to Azure Security Insights through IAM.
 
-After that, I went to Logic Apps and created a playbook to alert my Outlook mail anytime an incident like the brute-force attack happens.
-
-Then while I was trying to add the playbook to my Analytics Rule in Automation, I could not click on the brute-force-response playbook I created.
-
-It took me a while to figure out I had to assign the role of Sentinel Automation Contributor to Azure Security Insights in IAM.
-
-Once I assigned the role successfully, the playbook was integrated properly and the SOAR workflow started working.
+After assigning the role, I was able to integrate the playbook into the workflow. This helped me understand how permissions affect SOAR automation in Microsoft Sentinel.
 
 ![Analytics Rule](screenshots/01-analytics-rule.png)
 
@@ -171,7 +165,11 @@ To enable SOAR and to be able to add automation rules to my Analytic rule, I was
 
 The license for Defender for Office 365 Plan 2 E5 is needed or Business Premium License to be able to use the Outlook connector in the Logic App. This pushed me to set up a proper Microsoft 365 licensing configuration in my home lab.
 
-The impact of SOAR in real-time business is that SOAR allows for the immediate remediation of threats. From my project, the SOAR alerted the SOC Analyst directly on Outlook account to check out a potential Brute Force Attack. This can reduce the time between incident in defender portal and human awareweness.
+This project helped me understand how SOAR can reduce manual work by automating parts of the incident notification process.
+
+In my lab, the playbook sends an email notification to the SOC analyst through Outlook when a matching brute-force incident triggers the workflow. This can reduce the time between an incident appearing in Sentinel and the analyst being notified.
+
+The workflow demonstrates automated notification, not automatic blocking of an IP address or disabling of a user account.
 
 ---
 
